@@ -1,4 +1,8 @@
-gymnasium
 stable-baselines3
+gymnasium[classic-control]
 torch
+numpy
 matplotlib
+pandas
+pandas-stubs
+pgmpy

@@ -8,12 +8,14 @@ from shire.callbacks import RewardLoggerCallback
 callback = RewardLoggerCallback(filename="results/rewards_shire.csv")
 
 env = gym.make(
-    "CartPole-v1"
+    "CartPole-v1"#,
+    # render_mode="human"
 )
 
 model = SHIREPPO(
     "MlpPolicy",
     env,
+    tensorboard_log="./tb_logs/",
     verbose=1,
     shire_coef=0.5
 )

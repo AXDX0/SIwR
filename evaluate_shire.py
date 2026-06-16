@@ -4,8 +4,8 @@ from shire.shire_ppo import SHIREPPO
 
 
 env = gym.make(
-    "CartPole-v1",
-    render_mode="human"
+    "CartPole-v1"#,
+    # render_mode="human"
 )
 
 model = SHIREPPO.load(
@@ -38,3 +38,8 @@ for _ in range(episodes):
         done = terminated or truncated
 
     scores.append(total_reward)
+
+print(
+    "Average reward:",
+    sum(scores) / len(scores)
+)

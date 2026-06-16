@@ -37,6 +37,10 @@ class SHIREPPO(PPO):
     ):
         losses = []
 
+        # dodano nowy fragment – start
+        agreements = []
+        # dodano nowy fragment – koniec
+
         observations = (
             observations
             .detach()
@@ -66,6 +70,18 @@ class SHIREPPO(PPO):
                 )
             )
 
+            # dodano nowy fragment – start
+            policy_action = torch.argmax(
+                ppo_prob
+            ).item()
+
+            bayes_action = np.argmax(
+                bayes_prob
+            )
+
+            agreements.append(policy_action == bayes_action)
+            # dodano nowy fragment – koniec
+
             bayes_prob = torch.tensor(
                 bayes_prob,
                 dtype=torch.float32,
@@ -83,7 +99,9 @@ class SHIREPPO(PPO):
 
             losses.append(kl)
 
-        return torch.stack(losses).mean()
+        # zmodyfikowano – start
+        return (torch.stack(losses).mean(), np.mean(agreements))
+        # zmodyfikowano – koniec
 
     # skopiowano z ppo.py – start
     def train(self) -> None:
@@ -103,6 +121,11 @@ class SHIREPPO(PPO):
         entropy_losses = []
         pg_losses, value_losses = [], []
         clip_fractions = []
+
+        # dodano nowy fragment – start
+        intuition_losses = []
+        agreement_values = []
+        # dodano nowy fragment – koniec
 
         continue_training = True
         # train for n_epochs epochs
@@ -163,9 +186,17 @@ class SHIREPPO(PPO):
                     rollout_data.observations
                 )
 
-                intuition_loss = self.compute_intuition_loss(
+                intuition_loss, agreement = self.compute_intuition_loss(
                     rollout_data.observations,
                     distribution
+                )
+
+                agreement_values.append(
+                    agreement
+                )
+
+                intuition_losses.append(
+                    intuition_loss.item()
                 )
                 # dodano nowy fragment – koniec
 
@@ -205,6 +236,12 @@ class SHIREPPO(PPO):
         self.logger.record("train/entropy_loss", np.mean(entropy_losses))
         self.logger.record("train/policy_gradient_loss", np.mean(pg_losses))
         self.logger.record("train/value_loss", np.mean(value_losses))
+
+        # dodano nowy fragment – start
+        self.logger.record("train/intuition_loss",np.mean(intuition_losses))
+        self.logger.record("train/agreement",np.mean(agreement_values))
+        # dodano nowy fragment – koniec
+
         self.logger.record("train/approx_kl", np.mean(approx_kl_divs))
         self.logger.record("train/clip_fraction", np.mean(clip_fractions))
         self.logger.record("train/loss", loss.item())

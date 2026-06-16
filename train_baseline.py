@@ -7,11 +7,14 @@ from shire.callbacks import RewardLoggerCallback
 
 callback = RewardLoggerCallback(filename="results/rewards_baseline.csv")
 
-env = gym.make("CartPole-v1")
+env = gym.make("CartPole-v1"#,
+    # render_mode="human"
+)
 
 model = PPO(
     "MlpPolicy",
     env,
+    tensorboard_log="./tb_logs/",
     verbose=1
 )
 
