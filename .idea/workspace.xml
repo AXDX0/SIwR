@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="edc1f933-6195-4ebf-9c48-5c6cd2b8e8c1" name="Changes" comment="jakiś commit">
-      <change beforePath="$PROJECT_DIR$/evaluate_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluate_baseline.py" afterDir="false" />
+    <list default="true" id="edc1f933-6195-4ebf-9c48-5c6cd2b8e8c1" name="Changes" comment="Wersja skończona, do oddania.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/evaluate_shire.py" beforeDir="false" afterPath="$PROJECT_DIR$/evaluate_shire.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shire/shire_ppo.py" beforeDir="false" afterPath="$PROJECT_DIR$/shire/shire_ppo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_baseline.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_baseline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_shire.py" beforeDir="false" afterPath="$PROJECT_DIR$/train_shire.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/reward_curves.svg" beforeDir="false" afterPath="$PROJECT_DIR$/results/reward_curves.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +92,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781611558714</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Wersja skończona, do oddania.">
+      <option name="closed" value="true" />
+      <created>1781677036429</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1781677036429</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -111,6 +116,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="jakiś commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="jakiś commit" />
+    <MESSAGE value="Wersja skończona, do oddania." />
+    <option name="LAST_COMMIT_MESSAGE" value="Wersja skończona, do oddania." />
   </component>
 </project>
