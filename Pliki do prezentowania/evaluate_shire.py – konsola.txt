@@ -1,0 +1,6 @@
+"C:\Users\User\Desktop\Foldery\Pliki\Politechnika\Stopien 2\Semestr 1\SIwR\Projekt_SIwR\venv\Scripts\python.exe" "C:\Users\User\Desktop\Foldery\Pliki\Politechnika\Stopien 2\Semestr 1\SIwR\Projekt_SIwR\evaluate_shire.py" 
+C:\Users\User\Desktop\Foldery\Pliki\Politechnika\Stopien 2\Semestr 1\SIwR\Projekt_SIwR\venv\Lib\site-packages\pgmpy\estimators\__init__.py:4: FutureWarning: `pgmpy.estimators.StructureScore` is deprecated and will be removed in v1.3.0. Use `pgmpy.structure_score` instead.
+  from .StructureScore import (
+Average reward: 500.0
+
+Process finished with exit code 0

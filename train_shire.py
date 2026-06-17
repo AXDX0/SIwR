@@ -1,4 +1,5 @@
 import gymnasium as gym
+import time
 
 from shire.shire_ppo import SHIREPPO
 
@@ -20,10 +21,15 @@ model = SHIREPPO(
     shire_coef=0.5
 )
 
+start_time = time.time()
+
 model.learn(
     total_timesteps=50000,
     callback=callback
 )
+
+elapsed = time.time() - start_time
+print(f"Training time: {elapsed:.2f}s")
 
 model.save(
     "models/ppo_shire"

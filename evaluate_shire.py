@@ -4,8 +4,7 @@ from shire.shire_ppo import SHIREPPO
 
 
 env = gym.make(
-    "CartPole-v1"#,
-    # render_mode="human"
+    "CartPole-v1", render_mode="human"
 )
 
 model = SHIREPPO.load(

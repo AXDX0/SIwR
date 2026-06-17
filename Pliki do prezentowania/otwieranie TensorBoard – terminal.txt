@@ -1,0 +1,6 @@
+(venv) PS C:\Users\User\Desktop\Foldery\Pliki\Politechnika\Stopien 2\Semestr 1\SIwR\Projekt_SIwR> tensorboard --logdir tb_logs
+C:\Users\User\Desktop\Foldery\Pliki\Politechnika\Stopien 2\Semestr 1\SIwR\Projekt_SIwR\venv\Lib\site-packages\tensorboard\default.py:30: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+TensorFlow installation not found - running with reduced feature set.
+Serving TensorBoard on localhost; to expose to the network, use a proxy or pass --bind_all
+TensorBoard 2.20.0 at http://localhost:6006/ (Press CTRL+C to quit)

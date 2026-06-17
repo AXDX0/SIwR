@@ -1,4 +1,5 @@
 import gymnasium as gym
+import time
 
 from stable_baselines3 import PPO
 
@@ -18,10 +19,15 @@ model = PPO(
     verbose=1
 )
 
+start_time = time.time()
+
 model.learn(
     total_timesteps=50000,
     callback=callback
 )
+
+elapsed = time.time() - start_time
+print(f"Training time: {elapsed:.2f}s")
 
 model.save(
     "models/ppo_baseline"

@@ -1,4 +1,5 @@
 import torch
+import time
 
 from stable_baselines3 import PPO
 
@@ -37,9 +38,9 @@ class SHIREPPO(PPO):
     ):
         losses = []
 
-        # dodano nowy fragment – start
+        #
         agreements = []
-        # dodano nowy fragment – koniec
+        #
 
         observations = (
             observations
@@ -70,7 +71,7 @@ class SHIREPPO(PPO):
                 )
             )
 
-            # dodano nowy fragment – start
+            #
             policy_action = torch.argmax(
                 ppo_prob
             ).item()
@@ -80,7 +81,7 @@ class SHIREPPO(PPO):
             )
 
             agreements.append(policy_action == bayes_action)
-            # dodano nowy fragment – koniec
+            #
 
             bayes_prob = torch.tensor(
                 bayes_prob,
@@ -99,9 +100,9 @@ class SHIREPPO(PPO):
 
             losses.append(kl)
 
-        # zmodyfikowano – start
-        return (torch.stack(losses).mean(), np.mean(agreements))
-        # zmodyfikowano – koniec
+        #
+        return torch.stack(losses).mean(), np.mean(agreements)
+        #
 
     # skopiowano z ppo.py – start
     def train(self) -> None:
@@ -125,6 +126,7 @@ class SHIREPPO(PPO):
         # dodano nowy fragment – start
         intuition_losses = []
         agreement_values = []
+        overhead_values = []
         # dodano nowy fragment – koniec
 
         continue_training = True
@@ -186,10 +188,15 @@ class SHIREPPO(PPO):
                     rollout_data.observations
                 )
 
+                t0 = time.perf_counter()
                 intuition_loss, agreement = self.compute_intuition_loss(
                     rollout_data.observations,
                     distribution
                 )
+                t1 = time.perf_counter()
+                overhead = (t1 - t0)
+                overhead_per_sample = (overhead / len(rollout_data.observations))
+                overhead_values.append(overhead_per_sample)
 
                 agreement_values.append(
                     agreement
@@ -240,6 +247,7 @@ class SHIREPPO(PPO):
         # dodano nowy fragment – start
         self.logger.record("train/intuition_loss",np.mean(intuition_losses))
         self.logger.record("train/agreement",np.mean(agreement_values))
+        self.logger.record("train/overhead_per_sample",np.mean(overhead_values))
         # dodano nowy fragment – koniec
 
         self.logger.record("train/approx_kl", np.mean(approx_kl_divs))
